@@ -49,7 +49,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\travel_svgrepo_com.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+		<PackageReference Include="IdentityModel.OidcClient" Version="5.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\LogInPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SignUpPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>
