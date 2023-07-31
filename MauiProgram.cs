@@ -1,4 +1,5 @@
 ﻿using ExploreCity.Auth0;
+using ExploreCity.Services;
 using ExploreCity.ViewModels;
 using ExploreCity.Views;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ namespace ExploreCity
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiMaps()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,6 +33,11 @@ namespace ExploreCity
 
             builder.Services.AddTransient<SignUpPage>();
             builder.Services.AddTransient<SignUpViewModel>();
+
+            builder.Services.AddSingleton<IUserService, UserService>();
+
+            builder.Services.AddSingleton<UsagePage>();
+            builder.Services.AddSingleton<UsageViewModel>();
 
             builder.Services.AddSingleton(new Auth0Client(new()
             {

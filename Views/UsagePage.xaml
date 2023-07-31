@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ExploreCity.ViewModels"
+             x:DataType="viewmodel:UsageViewModel"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+             x:Class="ExploreCity.Views.UsagePage"
+             Title="Inicio">
+    <VerticalStackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
+                <maps:Map x:Name="map" HeightRequest="400" Margin="20" IsShowingUser="True" >
+                    <x:Arguments>
+                    </x:Arguments>
+                    <maps:Map.Pins>
+                        <maps:Pin Type="Generic">
+                        </maps:Pin>
+                    </maps:Map.Pins>
+                </maps:Map>
+            </StackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

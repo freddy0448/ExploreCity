@@ -6,7 +6,7 @@
              x:Class="ExploreCity.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Spacing="20">
             <Button Command="{Binding GoToLogInCommand}" Text="Iniciar Sesión"/>
             <Button Command="{Binding GoToSignUpCommand}" Text="Registrate"/>
         </VerticalStackLayout>

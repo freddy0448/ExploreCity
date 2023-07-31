@@ -11,6 +11,7 @@ namespace ExploreCity
             MainPage = new AppShell();
             Routing.RegisterRoute(nameof(LogInPage), typeof(LogInPage));
             Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
+            Routing.RegisterRoute(nameof(UsagePage), typeof(UsagePage));
         }
     }
 }

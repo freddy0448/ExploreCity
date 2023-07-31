@@ -8,11 +8,11 @@
     <VerticalStackLayout>
         <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
         <Label Text="Usuario"/>
-        <Entry Placeholder="Usuario" Keyboard="Text"/>
+        <Entry Placeholder="Usuario" Keyboard="Text" Text="{Binding User.UserName}"/>
         <Label Text="Contraseña"/>
-        <Entry Placeholder="Contraseña" IsPassword="True" Keyboard="Text"/>
+        <Entry Placeholder="Contraseña" IsPassword="True" Keyboard="Text" Text="{Binding User.Password}"/>
         <Label Text="Confirmar contraseña"/>
-        <Entry IsPassword="True" Placeholder="Confirmar contraseña"/>
-        <Button Text="Registrarse"/>
+        <Entry IsPassword="True" Placeholder="Confirmar contraseña" Text="{Binding PasswordConfirmation}"/>
+        <Button Text="Registrarse" Command="{Binding RegisterUserCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
