@@ -18,6 +18,7 @@ namespace ExploreCity.ViewModels
 
         public SignUpViewModel(IUserService userService)
         {
+            user = new UserModel();
             _userService = userService;
         }
 
@@ -27,16 +28,29 @@ namespace ExploreCity.ViewModels
             var userList = await _userService.GetUser();
             if (userList.Count > 0)
             {
-                bool isUserRegistered = userList.Equals(User);
+                bool isUserRegistered = userList.Contains(User);
 
                 if (User.Password == PasswordConfirmation)
+                {
                     AddUser(isUserRegistered);
+                    EntryClean();
+                }
                 else
                     await Shell.Current.DisplayAlert("Mensaje", "La contraseña y la confirmación son diferentes, favor de ingresar la misma contraseña", "OK");  
             }
             else
             {
-                AddUser(false);
+                if (User.Password == PasswordConfirmation)
+                {
+                    AddUser(false);
+                    EntryClean();
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Mensaje", "La contraseña y la confirmación son diferentes, favor de ingresar la misma contraseña", "OK");
+                    EntryClean();
+                }
+
             }
         }
 
@@ -51,7 +65,15 @@ namespace ExploreCity.ViewModels
             else
             {
                 await Shell.Current.DisplayAlert("Mensaje", "El usuario ya existe", "OK");
+                EntryClean();
             }
+        }
+        
+        private void EntryClean()
+        {
+            User.UserName = string.Empty;
+            User.Password = string.Empty;
+            PasswordConfirmation = string.Empty;
         }
 
     }

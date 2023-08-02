@@ -12,19 +12,18 @@ namespace ExploreCity.ViewModels
         //private readonly Auth0Client _client;
         private IUserService _userService;
 
+        List<string> cUserName;
+        List<string> cPassword;
+
         [ObservableProperty]
         UserModel user;
 
         [ObservableProperty]
         string password;
-        public LogInViewModel(/*Auth0Client auth0Client*/ IUserService userService) 
+        public LogInViewModel(/*Auth0Client auth0Client, */IUserService userService) 
         {
             _userService = userService;
-
-            //_client = auth0Client;
-//#if WINDOWS
-//    _client.Browser = new WebViewBrowserAuthenticator(WebViewInstance);
-//#endif
+            user = new UserModel();
         }
 
         [RelayCommand]
@@ -33,9 +32,11 @@ namespace ExploreCity.ViewModels
             var userList = await _userService.GetUser();
             if (userList.Count > 0)
             {
-                bool isUserRegistered = userList.Equals(User);
-                bool isPasswordCorrect = Password.Equals(User.Password);
-                if (isUserRegistered && isPasswordCorrect)
+
+                cUserName = userList.Select(x => x.UserName).ToList();
+                cPassword = userList.Select(x =>x.Password).ToList();
+                bool isUserRegistered = (cUserName.Contains(User.UserName) && cPassword.Contains(User.Password)) ? true : false;
+                if (isUserRegistered)
                 {
                     GoToUsagePage();
                 }
@@ -57,5 +58,6 @@ namespace ExploreCity.ViewModels
         {
             await Shell.Current.GoToAsync(nameof(UsagePage));
         }
+
     }
 }

@@ -6,9 +6,14 @@
              x:Class="ExploreCity.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Button Command="{Binding GoToLogInCommand}" Text="Iniciar Sesión"/>
-            <Button Command="{Binding GoToSignUpCommand}" Text="Registrate"/>
+        <VerticalStackLayout >
+            <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
+            <Button Command="{Binding GoToLogInCommand}" Text="Iniciar Sesión" HeightRequest="80" Margin="10, 80"/>
+            <Button Command="{Binding GoToSignUpCommand}" Text="Registrate" HeightRequest="80" Margin="10, 0"/>
+            <Button Command="{Binding GoToUsageCommand}" Text="Mapa"/>
+            
+            <Label Text="Hecho por: Freddy Villar" HorizontalOptions="Center" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Padding="90, 170, 90, 10" />
+            <Label Text="2023" HorizontalOptions="Center" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" />
         </VerticalStackLayout>
     </ScrollView>
 

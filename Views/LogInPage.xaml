@@ -10,7 +10,7 @@
         <Label Text="Usuario"/>
         <Entry Placeholder="Usuario" Keyboard="Text" Text="{Binding User.UserName}"/>
         <Label Text="Contraseña"/>
-        <Entry Placeholder="Contraseña" IsPassword="True" Keyboard="Text" Text="{Binding Password}"/>
+        <Entry Placeholder="Contraseña" IsPassword="True" Keyboard="Text" Text="{Binding User.Password}"/>
         <Button Text="Iniciar Sesión" VerticalOptions="Center" Command="{Binding LogInCommand}"/>
         <!--<WebView x:Name="WebViewInstance"/>-->
     </VerticalStackLayout>

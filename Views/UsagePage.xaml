@@ -12,13 +12,9 @@
             <StackLayout>
                 <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
                 <maps:Map x:Name="map" HeightRequest="400" Margin="20" IsShowingUser="True" >
-                    <x:Arguments>
-                    </x:Arguments>
-                    <maps:Map.Pins>
-                        <maps:Pin Type="Generic">
-                        </maps:Pin>
-                    </maps:Map.Pins>
                 </maps:Map>
+
+                <Button Clicked="OnCameraClicked" Text="camera"/>
             </StackLayout>
         </ScrollView>
     </VerticalStackLayout>

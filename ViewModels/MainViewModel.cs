@@ -18,5 +18,12 @@ namespace ExploreCity.ViewModels
         {
             await Shell.Current.GoToAsync(nameof(SignUpPage));
         }
+
+        [RelayCommand]
+        public async void GoToUsage()
+        {
+            await Shell.Current.GoToAsync(nameof(UsagePage));
+        }
+
     }
 }
