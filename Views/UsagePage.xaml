@@ -7,15 +7,29 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="ExploreCity.Views.UsagePage"
              Title="Inicio">
+    
     <VerticalStackLayout>
-        <ScrollView>
             <StackLayout>
                 <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
-                <maps:Map x:Name="map" HeightRequest="400" Margin="20" IsShowingUser="True" >
+                <maps:Map x:Name="map" HeightRequest="500" Margin="20" IsShowingUser="True" 
+                          MapType="Street" IsTrafficEnabled="False" IsScrollEnabled="True" IsZoomEnabled="True">
+                    
+                    <x:Arguments>
+                        <MapSpan>
+                            <x:Arguments>
+                                <sensors:Location>
+                                    <x:Arguments>
+                                        <x:Double>19.0000000</x:Double>
+                                        <x:Double>-70.6667000</x:Double>
+                                    </x:Arguments>
+                                </sensors:Location>
+                                <x:Double>8</x:Double>
+                                <x:Double>8</x:Double>
+                            </x:Arguments>
+                        </MapSpan>
+                    </x:Arguments>
                 </maps:Map>
-
-                <Button Clicked="OnCameraClicked" Text="camera"/>
+                <Button Command="{Binding CameraClickedCommand}" Text="camera"/>
             </StackLayout>
-        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
