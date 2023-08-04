@@ -1,8 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
-using ExploreCity.Views;
-using Microsoft.Maui.Controls.Maps;
+using ExploreCity.Services;
 using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
@@ -24,8 +23,10 @@ namespace ExploreCity.ViewModels
         [ObservableProperty]
         ObservableCollection<PinModel> _locations;
 
-        public UsageViewModel()
+        private IPinService _pinService;
+        public UsageViewModel(IPinService pinService)
         {
+            _pinService = pinService;
             _pinModel = new PinModel();
             _locations = new ObservableCollection<PinModel>();
         }
@@ -48,6 +49,29 @@ namespace ExploreCity.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task<int> SavePin()
+        {
+            int response = 0;
+
+            bool savePin = await Shell.Current.DisplayAlert("Mensaje", "Desea guardar la nueva marca?", "SI", "NO");
+
+            if (savePin)
+            {
+
+                await _pinService.DeleteAllPinsAsync();
+
+                foreach (var location in Locations)
+                {
+                    var responseInsert = _pinService.InsertPinAsync(location);
+                    response = await responseInsert;
+                }
+            }
+            else if(!savePin )
+                Locations.Clear();
+            return response;
+        }
+
+
     }
 }
- 

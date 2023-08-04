@@ -58,7 +58,7 @@ namespace ExploreCity.ViewModels
         {
             if (isRegistered == false)
             {
-                await _userService.AddUser(User);
+                await _userService.InsertUser(User);
                 await Shell.Current.DisplayAlert("Mensaje", "Usuario registrado exitosamente", "OK");
                 await Shell.Current.GoToAsync(nameof(UsagePage));
             }

@@ -36,6 +36,8 @@ namespace ExploreCity
 
             builder.Services.AddSingleton<IUserService, UserService>();
 
+            builder.Services.AddSingleton<IPinService, PinService>();
+
             builder.Services.AddSingleton<UsagePage>();
             builder.Services.AddSingleton<UsageViewModel>();
 

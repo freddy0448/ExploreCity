@@ -26,7 +26,7 @@ namespace ExploreCity.Services
             return response;
         }
 
-        public async Task<int> AddUser(UserModel userModel)
+        public async Task<int> InsertUser(UserModel userModel)
         {
             Init();
 
