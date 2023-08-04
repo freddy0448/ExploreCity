@@ -11,24 +11,18 @@
     <VerticalStackLayout>
             <StackLayout>
                 <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
-                <maps:Map x:Name="map" HeightRequest="500" Margin="20" IsShowingUser="True" 
-                          MapType="Street" IsTrafficEnabled="False" IsScrollEnabled="True" IsZoomEnabled="True">
-                    
-                    <x:Arguments>
-                        <MapSpan>
-                            <x:Arguments>
-                                <sensors:Location>
-                                    <x:Arguments>
-                                        <x:Double>19.0000000</x:Double>
-                                        <x:Double>-70.6667000</x:Double>
-                                    </x:Arguments>
-                                </sensors:Location>
-                                <x:Double>8</x:Double>
-                                <x:Double>8</x:Double>
-                            </x:Arguments>
-                        </MapSpan>
-                    </x:Arguments>
-                </maps:Map>
+            <Button Text="pin" Command="{Binding SetNewPinCommand}"/>
+            <maps:Map x:Name="map" HeightRequest="500" Margin="20" IsShowingUser="True" 
+                          MapType="Street" MapClicked="OnMapClicked" ItemsSource="{Binding Locations}">
+                <maps:Map.ItemTemplate>
+                    <DataTemplate>
+                        <maps:Pin Location="{Binding Coordinates}"
+                                Address="{Binding Address}"
+                                Label="{Binding Label}"
+                                Type="Place"/>
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+            </maps:Map>
                 <Button Command="{Binding CameraClickedCommand}" Text="camera"/>
             </StackLayout>
     </VerticalStackLayout>

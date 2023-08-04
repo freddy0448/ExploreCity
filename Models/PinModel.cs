@@ -2,7 +2,7 @@
 {
     public class PinModel
     {
-        public Location Location { get; set; }
+        public Location Coordinates { get; set; }
         public string Address { get; set; }
         public string LabelDescription { get; set; }
     }

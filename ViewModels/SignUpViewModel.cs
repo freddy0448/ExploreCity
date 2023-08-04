@@ -11,14 +11,14 @@ namespace ExploreCity.ViewModels
         IUserService _userService;
 
         [ObservableProperty]
-        UserModel user;
+        UserModel _user;
 
         [ObservableProperty]
-        string passwordConfirmation;
+        string _passwordConfirmation;
 
         public SignUpViewModel(IUserService userService)
         {
-            user = new UserModel();
+            _user = new UserModel();
             _userService = userService;
         }
 
