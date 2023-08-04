@@ -25,13 +25,10 @@ public partial class UsagePage : ContentPage
         _viewModel.Locations.Add(new Models.PinModel()
         {
             Address = addressToInsert,
-            Latitude = UsagePage.tappedLocation.Latitude,
-            Longitude = UsagePage.tappedLocation.Longitude,
+            Coordinates = UsagePage.tappedLocation,
             LabelDescription = "Nueva ubicacion"
         });
 
-        _viewModel.Coordinates.Altitude = UsagePage.tappedLocation.Altitude;
-        _viewModel.Coordinates.Longitude = UsagePage.tappedLocation.Longitude;
         await _viewModel.SavePin();
     }
 
