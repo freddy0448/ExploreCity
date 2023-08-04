@@ -1,35 +1,31 @@
+using Android.Locations;
 using ExploreCity.ViewModels;
 using Microsoft.Maui.Controls.Maps;
+using static Android.Media.MicrophoneInfo;
 
 namespace ExploreCity.Views;
 
 public partial class UsagePage : ContentPage
 {
-    object sender;
-    MapClickedEventArgs e;
-    public static Location tappedLocation;
+    public static Microsoft.Maui.Devices.Sensors.Location tappedLocation;
+    private UsageViewModel _viewModel;
     public UsagePage(UsageViewModel usageViewModel)
     {
         InitializeComponent();
         BindingContext = usageViewModel;
+        _viewModel = usageViewModel;
     }
 
-    public void OnMapClicked(object sender, MapClickedEventArgs e)
+    public async void OnMapClicked(object sender, MapClickedEventArgs e)
     {
-        double latitude = e.Location.Latitude;
-        double longitude = e.Location.Longitude;
-        tappedLocation = new Location(latitude, longitude);
-        this.sender = sender;
-        this.e = e;
-    }
+        tappedLocation = new Microsoft.Maui.Devices.Sensors.Location(e.Location);
 
-    public object GetSender()
-    {
-        return sender;
-    }
-
-    public MapClickedEventArgs GetMapClickedEventArgs()
-    {
-        return e;
+        var pin = await Geocoding.GetPlacemarksAsync(UsagePage.tappedLocation);
+        _viewModel.Locations.Add(new Models.PinModel()
+        {
+            Address = pin.ElementAt(3).FeatureName,
+            Coordinates = UsagePage.tappedLocation,
+            LabelDescription = "Nueva ubicacion"
+        });
     }
 }

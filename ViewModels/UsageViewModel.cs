@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
 using ExploreCity.Views;
+using Microsoft.Maui.Controls.Maps;
 using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
@@ -15,7 +16,7 @@ namespace ExploreCity.ViewModels
         string _address;
 
         [ObservableProperty]
-        string _label;
+        string _labelDescription;
 
         [ObservableProperty]
         PinModel _pinModel;
@@ -27,9 +28,6 @@ namespace ExploreCity.ViewModels
         {
             _pinModel = new PinModel();
             _locations = new ObservableCollection<PinModel>();
-            _coordinates = new Location(19.3877863855499, -70.5287242680788);
-            _address = "address test";
-            _label = "label test";
         }
 
         [RelayCommand]
@@ -50,15 +48,6 @@ namespace ExploreCity.ViewModels
             }
         }
 
-        [RelayCommand]
-        public async Task SetNewPin()
-        {
-            UsagePage usagePage = new UsagePage(this);
-            var sender = usagePage.GetSender();
-            var mapClicked = usagePage.GetMapClickedEventArgs();
-
-            usagePage.OnMapClicked(sender, mapClicked);
-            Coordinates = UsagePage.tappedLocation;
-        }
     }
 }
+ 

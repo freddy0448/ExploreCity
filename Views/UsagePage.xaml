@@ -15,11 +15,11 @@
             <maps:Map x:Name="map" HeightRequest="500" Margin="20" IsShowingUser="True" 
                           MapType="Street" MapClicked="OnMapClicked" ItemsSource="{Binding Locations}">
                 <maps:Map.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate >
                         <maps:Pin Location="{Binding Coordinates}"
                                 Address="{Binding Address}"
-                                Label="{Binding Label}"
-                                Type="Place"/>
+                                Label="{Binding LabelDescription}"
+                                Type="SavedPin"/>
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
