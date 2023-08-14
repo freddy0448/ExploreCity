@@ -18,11 +18,11 @@
                         <maps:Pin Location="{Binding Coordinates}"
                                 Address="{Binding Address}"
                                 Label="{Binding LabelDescription}"
-                                Type="SavedPin"/>
+                                Type="SavedPin"
+                                InfoWindowClicked="Pin_InfoWindowClicked"/>
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
-                <Button Command="{Binding CameraClickedCommand}" Text="camera"/>
             </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -34,12 +34,14 @@ namespace ExploreCity
             builder.Services.AddTransient<SignUpPage>();
             builder.Services.AddTransient<SignUpViewModel>();
 
-            builder.Services.AddSingleton<IUserService, UserService>();
-
-            builder.Services.AddSingleton<IPinService, PinService>();
-
             builder.Services.AddSingleton<UsagePage>();
             builder.Services.AddSingleton<UsageViewModel>();
+            
+            builder.Services.AddTransient<DetailsViewModel>();
+            builder.Services.AddTransient<DetailsPage>();
+
+            builder.Services.AddSingleton<IUserService, UserService>();
+            builder.Services.AddSingleton<IPinService, PinService>();
 
             builder.Services.AddSingleton(new Auth0Client(new()
             {

@@ -7,5 +7,6 @@ namespace ExploreCity.Services
         Task<List<PinModel>> GetPinsAsync();
         Task<int> InsertPinAsync(PinModel pinModel);
         Task<int> DeleteAllPinsAsync();
+        Task<int> UpdatePinAsync(PinModel pinModel);
     }
 }

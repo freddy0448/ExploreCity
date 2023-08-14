@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
 using ExploreCity.Services;
+using ExploreCity.Views;
 using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
@@ -32,24 +33,6 @@ namespace ExploreCity.ViewModels
         }
 
         [RelayCommand]
-        public async Task OnCameraClicked()
-        {
-            if (MediaPicker.Default.IsCaptureSupported)
-            {
-                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
-                photo.FileName = DateTime.Now.ToString("dd-MM-yyyy H:mm ss") + ".jpg";
-                if (photo != null)
-                {
-                    string localFilePath = Path.Combine(FileSystem.Current.CacheDirectory, photo.FileName);
-                    using Stream source = await photo.OpenReadAsync();
-                    using FileStream fileStream = File.OpenWrite(localFilePath);
-
-                    await source.CopyToAsync(fileStream);
-                }
-            }
-        }
-
-        [RelayCommand]
         public async Task<int> SavePin()
         {
             int response = 0;
@@ -58,8 +41,7 @@ namespace ExploreCity.ViewModels
 
             if (savePin)
             {
-
-                await _pinService.DeleteAllPinsAsync();
+                //await _pinService.DeleteAllPinsAsync();
 
                 foreach (var location in Locations)
                 {
@@ -67,11 +49,37 @@ namespace ExploreCity.ViewModels
                     response = await responseInsert;
                 }
             }
-            else if(!savePin )
-                Locations.Clear();
+            else if (!savePin)
+                Locations.Last().Coordinates = null;
             return response;
         }
 
+        [RelayCommand]
+        public async Task<List<PinModel>> GetPinsAsync()
+        {
+            var result = await _pinService.GetPinsAsync();
+
+            if (result != null)
+                foreach (var pin in result)
+                {
+                    Locations.Add(pin);
+                    Coordinates = new Location()
+                    {
+                        Latitude = pin.Latitude,
+                        Longitude = pin.Longitude
+                    };
+                }
+
+            return result;
+        }
+
+        [RelayCommand]
+        public async Task GoToDetailsPage(PinModel pinModel)
+        {
+            var varParam = new Dictionary<string, object>();
+            varParam.Add("PinData", pinModel);
+            await Shell.Current.GoToAsync(nameof(DetailsPage));
+        }
 
     }
 }

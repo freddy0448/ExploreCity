@@ -26,14 +26,13 @@ namespace ExploreCity.Services
             return response;
         }
 
-        public Task<List<PinModel>> GetPinsAsync()
+        public async Task<List<PinModel>> GetPinsAsync()
         {
             Init();
 
-            var response = db.Table<PinModel>().ToListAsync();
+            var response = await db.Table<PinModel>().ToListAsync();
             return response;
         }
-
 
         public async Task<int> DeleteAllPinsAsync()
         {
@@ -42,5 +41,12 @@ namespace ExploreCity.Services
             var response = await db.DeleteAllAsync<PinModel>();
             return response;
         }
+
+        public async Task<int> UpdatePinAsync(PinModel pinModel)
+        {
+            Init();
+            return await db.UpdateAsync(pinModel);
+        }
+
     }
 }

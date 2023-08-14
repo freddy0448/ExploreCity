@@ -25,6 +25,8 @@ public partial class UsagePage : ContentPage
         _viewModel.Locations.Add(new Models.PinModel()
         {
             Address = addressToInsert,
+            Latitude = UsagePage.tappedLocation.Latitude,
+            Longitude = UsagePage.tappedLocation.Longitude,
             Coordinates = UsagePage.tappedLocation,
             LabelDescription = "Nueva ubicacion"
         });
@@ -32,4 +34,17 @@ public partial class UsagePage : ContentPage
         await _viewModel.SavePin();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _viewModel.GetPinsCommand.Execute(null);
+    }
+    private void Pin_InfoWindowClicked(object sender, PinClickedEventArgs e)
+    {
+        var pin = (Pin)sender;
+
+        var varParam = new Dictionary<string, object>();
+        varParam.Add("Pin", pin);
+        Shell.Current.GoToAsync(nameof(DetailsPage), varParam);
+    }
 }

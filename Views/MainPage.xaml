@@ -11,9 +11,10 @@
             <Button Command="{Binding GoToLogInCommand}" Text="Iniciar Sesión" HeightRequest="80" Margin="10, 80"/>
             <Button Command="{Binding GoToSignUpCommand}" Text="Registrate" HeightRequest="80" Margin="10, 0"/>
             <Button Command="{Binding GoToUsageCommand}" Text="Mapa"/>
-            
+            <Button Command="{Binding GoToDetailsCommand}" Text="Detalles"/>
+
             <Label Text="Hecho por: Freddy Villar" HorizontalOptions="Center" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" Padding="90, 170, 90, 10" />
-            <Label Text="2023" HorizontalOptions="Center" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" />
+            <Label Text="2021-1800" HorizontalOptions="Center" TextColor="DarkGray" FontAttributes="Bold" FontSize="15" />
         </VerticalStackLayout>
     </ScrollView>
 

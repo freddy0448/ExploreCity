@@ -12,6 +12,8 @@ namespace ExploreCity
             Routing.RegisterRoute(nameof(LogInPage), typeof(LogInPage));
             Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
             Routing.RegisterRoute(nameof(UsagePage), typeof(UsagePage));
+            Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
+
         }
     }
 }

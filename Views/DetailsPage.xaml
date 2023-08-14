@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ExploreCity.ViewModels"
+             x:DataType="viewmodel:DetailsViewModel"
+             x:Class="ExploreCity.Views.DetailsPage"
+             Title="DetailsPage">
+
+    <ScrollView>
+        <Grid ColumnDefinitions=".50*, .50*"
+              RowDefinitions="200, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+            <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+            <Label Text="Titulo" Grid.Column="0" Grid.Row="1"/>
+            <Entry Text="{Binding Pin.Address}" Placeholder="Ej: Instituto Tecnologico de las Americas" Grid.ColumnSpan="2" Grid.Row="2"/>
+
+            <Label Text="Direccion" Grid.Column="0" Grid.Row="3"/>
+            <Entry Text="{Binding Pin.Label}" Placeholder="Ej: Las Americas Km. 27" Grid.ColumnSpan="2" Grid.Row="4"/>
+
+            <Label Text="Descripcion" Grid.Column="0" Grid.Row="5"/>
+            <Entry Text="{Binding PinData.PlaceDescription}" Placeholder="Ej: El ITLA es el centro de educación superior en tecnología #1 en La Republica Dominicana"
+                       VerticalTextAlignment="Start" Keyboard="Text" Grid.ColumnSpan="2" Grid.Row="6"/>
+
+            <Button ImageSource="camera_alt_2_svgrepo_com.png" WidthRequest="180" Text="Agregar Foto" 
+                        HorizontalOptions="Start" Margin="10, 15" Command="{Binding CameraClickedCommand}"
+                        Grid.Column="0" Grid.Row="7"/>
+            <Button Grid.Column="1" Grid.Row="7" Text="Guardar Cambios" ImageSource="save_svgrepo_com.jpg" WidthRequest="180" Margin="10, 15"
+                    Command="{Binding SavePinCommand}"/>
+
+            <Image Source="{Binding PinData.ImageFullPath}"/>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
