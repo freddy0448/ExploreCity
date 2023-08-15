@@ -36,7 +36,7 @@ namespace ExploreCity
 
             builder.Services.AddSingleton<UsagePage>();
             builder.Services.AddSingleton<UsageViewModel>();
-            
+
             builder.Services.AddTransient<DetailsViewModel>();
             builder.Services.AddTransient<DetailsPage>();
 

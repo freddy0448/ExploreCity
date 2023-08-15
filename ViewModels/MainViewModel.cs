@@ -10,7 +10,7 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async void GoToLogIn()
         {
-            await Shell.Current.GoToAsync(nameof (LogInPage));
+            await Shell.Current.GoToAsync(nameof(LogInPage));
         }
 
         [RelayCommand]
@@ -26,7 +26,7 @@ namespace ExploreCity.ViewModels
         }
 
         [RelayCommand]
-        public async void GoToDetails() 
+        public async void GoToDetails()
         {
             await Shell.Current.GoToAsync(nameof(DetailsPage));
         }

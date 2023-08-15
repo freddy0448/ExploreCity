@@ -1,5 +1,4 @@
-﻿using ExploreCity.Auth0;
-using ExploreCity.ViewModels;
+﻿using ExploreCity.ViewModels;
 
 namespace ExploreCity
 {

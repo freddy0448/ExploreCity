@@ -48,5 +48,12 @@ namespace ExploreCity.Services
             return await db.UpdateAsync(pinModel);
         }
 
+        public  Task<PinModel> GetSpecifiedPin(double longitud)
+        {
+            Init();
+
+            return  db.FindAsync<PinModel>(longitud);
+        }
+
     }
 }

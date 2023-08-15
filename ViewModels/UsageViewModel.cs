@@ -57,12 +57,20 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async Task<List<PinModel>> GetPinsAsync()
         {
+            Locations.Clear();
             var result = await _pinService.GetPinsAsync();
 
             if (result != null)
                 foreach (var pin in result)
                 {
+                    pin.Coordinates = new Location()
+                    {
+                        Latitude = pin.Latitude,
+                        Longitude = pin.Longitude
+                    };
+
                     Locations.Add(pin);
+
                     Coordinates = new Location()
                     {
                         Latitude = pin.Latitude,
@@ -72,14 +80,5 @@ namespace ExploreCity.ViewModels
 
             return result;
         }
-
-        [RelayCommand]
-        public async Task GoToDetailsPage(PinModel pinModel)
-        {
-            var varParam = new Dictionary<string, object>();
-            varParam.Add("PinData", pinModel);
-            await Shell.Current.GoToAsync(nameof(DetailsPage));
-        }
-
     }
 }

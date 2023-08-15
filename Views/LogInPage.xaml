@@ -7,10 +7,13 @@
              Title="Inicio de Sesión">
     <VerticalStackLayout Margin="20" Spacing="10">
         <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
+        
         <Label Text="Usuario"/>
-        <Entry Placeholder="Usuario" Keyboard="Text" Text="{Binding User.UserName}"/>
+        <Entry Placeholder="Usuario" Text="{Binding User.UserName}" ClearButtonVisibility="WhileEditing"/>
+        
         <Label Text="Contraseña"/>
-        <Entry Placeholder="Contraseña" IsPassword="True" Keyboard="Text" Text="{Binding User.Password}"/>
+        <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding User.Password}" ClearButtonVisibility="WhileEditing"/>
+        
         <Button Text="Iniciar Sesión" VerticalOptions="Center" Command="{Binding LogInCommand}"/>
         <!--<WebView x:Name="WebViewInstance"/>-->
     </VerticalStackLayout>

@@ -1,3 +1,5 @@
+using ExploreCity.Models;
+using ExploreCity.Services;
 using ExploreCity.ViewModels;
 using Microsoft.Maui.Controls.Maps;
 
@@ -7,12 +9,14 @@ public partial class UsagePage : ContentPage
 {
     public static Microsoft.Maui.Devices.Sensors.Location tappedLocation;
     private UsageViewModel _viewModel;
+    private IPinService pinService;
 
-    public UsagePage(UsageViewModel usageViewModel)
+    public UsagePage(UsageViewModel usageViewModel, IPinService _pinService)
     {
         InitializeComponent();
         BindingContext = usageViewModel;
         _viewModel = usageViewModel;
+        pinService = _pinService;
     }
 
     public async void OnMapClicked(object sender, MapClickedEventArgs e)
@@ -42,9 +46,21 @@ public partial class UsagePage : ContentPage
     private void Pin_InfoWindowClicked(object sender, PinClickedEventArgs e)
     {
         var pin = (Pin)sender;
+        var desc = pinService.GetSpecifiedPin(pin.Location.Longitude);
+
+        PinModel pinModel = new PinModel()
+        {
+            Address = pin.Address,
+            LabelDescription = pin.Label,
+            Latitude = pin.Location.Latitude,
+            Longitude = pin.Location.Longitude,
+            Coordinates = pin.Location,
+            PlaceDescription = desc.Result.PlaceDescription,
+            ImageFullPath = desc.Result.ImageFullPath
+        };
 
         var varParam = new Dictionary<string, object>();
-        varParam.Add("Pin", pin);
+        varParam.Add("PinData", pinModel);
         Shell.Current.GoToAsync(nameof(DetailsPage), varParam);
     }
 }

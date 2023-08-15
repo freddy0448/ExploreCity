@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace ExploreCity
+namespace ExploreCity.Platforms.iOS
 {
     public class Program
     {

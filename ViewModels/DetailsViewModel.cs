@@ -6,14 +6,11 @@ using Microsoft.Maui.Controls.Maps;
 
 namespace ExploreCity.ViewModels
 {
-    [QueryProperty(nameof(Pin), "Pin")]
+    [QueryProperty(nameof(PinData), "PinData")]
     public partial class DetailsViewModel : ObservableObject
     {
         [ObservableProperty]
         public PinModel pinData;
-
-        [ObservableProperty]
-        public Pin pin;
 
         private IPinService pinService;
         public DetailsViewModel(IPinService _pinService)
@@ -31,7 +28,7 @@ namespace ExploreCity.ViewModels
                 if (photo != null)
                 {
                     photo.FileName = DateTime.Now.ToString("dd-MM-yyyy H:mm ss") + ".jpg";
-                    PinData.ImageFullPath = "/data/user/0/com.companyname.explorecity/cache/" + photo.FileName;
+                    PinData.ImageFullPath = Path.Combine(FileSystem.Current.CacheDirectory, photo.FileName);
 
                     string localFilePath = Path.Combine(FileSystem.Current.CacheDirectory, photo.FileName);
                     using Stream source = await photo.OpenReadAsync();
@@ -45,9 +42,11 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async Task SavePinAsync()
         {
-            PinData.Address = Pin.Address;
-            PinData.LabelDescription = Pin.Label;
+            PinModel result = await pinService.GetSpecifiedPin(PinData.Longitude);
+            PinData.PlaceDescription = result.PlaceDescription;
+
             await pinService.UpdatePinAsync(PinData);
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

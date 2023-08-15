@@ -21,7 +21,7 @@ namespace ExploreCity.Services
         public async Task<List<UserModel>> GetUser()
         {
             Init();
-            var response = await db.Table<UserModel>().ToListAsync(); 
+            var response = await db.Table<UserModel>().ToListAsync();
 
             return response;
         }

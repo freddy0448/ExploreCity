@@ -36,7 +36,7 @@ namespace ExploreCity.ViewModels
                     EntryClean();
                 }
                 else
-                    await Shell.Current.DisplayAlert("Mensaje", "La contraseña y la confirmación son diferentes, favor de ingresar la misma contraseña", "OK");  
+                    await Shell.Current.DisplayAlert("Mensaje", "La contraseña y la confirmación son diferentes, favor de ingresar la misma contraseña", "OK");
             }
             else
             {
@@ -68,7 +68,7 @@ namespace ExploreCity.ViewModels
                 EntryClean();
             }
         }
-        
+
         private void EntryClean()
         {
             User.UserName = string.Empty;

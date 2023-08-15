@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ExploreCity.Auth0;
 using ExploreCity.Models;
 using ExploreCity.Services;
 using ExploreCity.Views;
@@ -20,7 +19,7 @@ namespace ExploreCity.ViewModels
 
         [ObservableProperty]
         string password;
-        public LogInViewModel(/*Auth0Client auth0Client, */IUserService userService) 
+        public LogInViewModel(/*Auth0Client auth0Client, */IUserService userService)
         {
             _userService = userService;
             user = new UserModel();
@@ -34,10 +33,12 @@ namespace ExploreCity.ViewModels
             {
 
                 cUserName = userList.Select(x => x.UserName).ToList();
-                cPassword = userList.Select(x =>x.Password).ToList();
+                cPassword = userList.Select(x => x.Password).ToList();
                 bool isUserRegistered = (cUserName.Contains(User.UserName) && cPassword.Contains(User.Password)) ? true : false;
                 if (isUserRegistered)
                 {
+                    CleanEntries();
+
                     GoToUsagePage();
                 }
                 else
@@ -54,9 +55,16 @@ namespace ExploreCity.ViewModels
         }
 
         [RelayCommand]
-        async void GoToUsagePage()
+        void GoToUsagePage()
         {
-            await Shell.Current.GoToAsync(nameof(UsagePage));
+            Shell.Current.GoToAsync(nameof(UsagePage));
+        }
+
+        private void CleanEntries()
+        {
+            User.UserName = string.Empty;
+            User.Password = string.Empty;
+            Password = string.Empty;
         }
 
     }

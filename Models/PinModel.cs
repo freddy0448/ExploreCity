@@ -10,7 +10,7 @@ namespace ExploreCity.Models
         [PrimaryKey]
         public double Longitude { get; set; }
         public string PlaceDescription { get; set; }
-        public string ImageFullPath{ get; set; }
+        public string ImageFullPath { get; set; }
 
         [Ignore]
         public Location Coordinates { get; set; }

@@ -9,6 +9,20 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="DarkSalmon"/>
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="DarkCyan" />
+                <Setter Property="FontSize" Value="17"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="DarkSalmon" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="Silver" />
+                <Setter Property="PlaceholderColor" Value="SlateGray"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

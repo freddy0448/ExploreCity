@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace ExploreCity
+namespace ExploreCity.Platforms.iOS
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate
