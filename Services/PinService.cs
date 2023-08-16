@@ -55,5 +55,11 @@ namespace ExploreCity.Services
             return  db.FindAsync<PinModel>(longitud);
         }
 
+        public async Task<int> DeletePinAsync(PinModel pinModel)
+        {
+            Init();
+
+            return await db.DeleteAsync(pinModel);
+        }
     }
 }

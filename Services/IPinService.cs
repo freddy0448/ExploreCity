@@ -9,5 +9,6 @@ namespace ExploreCity.Services
         Task<int> DeleteAllPinsAsync();
         Task<int> UpdatePinAsync(PinModel pinModel);
         Task<PinModel> GetSpecifiedPin(double longitud);
+        Task<int> DeletePinAsync(PinModel pinModel);
     }
 }

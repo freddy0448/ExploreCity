@@ -54,6 +54,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\camera_alt_2_svgrepo_com.svg" />
+	  <None Remove="Resources\Images\delete.svg" />
 	  <None Remove="Resources\Images\save_svgrepo_com.svg" />
 	  <None Remove="Resources\Images\travel_svgrepo_com.svg" />
 	</ItemGroup>

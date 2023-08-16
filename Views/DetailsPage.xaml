@@ -8,17 +8,17 @@
 
     <ScrollView>
         <Grid ColumnDefinitions=".50*, .50*"
-              RowDefinitions="200, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+              RowDefinitions="200, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
             <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10" Grid.Row="0" Grid.ColumnSpan="2"/>
 
-            <Label Text="Titulo" Grid.Column="0" Grid.Row="1"/>
-            <Entry Text="{Binding PinData.LabelDescription}" Placeholder="Ej: Instituto Tecnologico de las Americas" Grid.ColumnSpan="2" Grid.Row="2" Keyboard="Text"/>
+            <Label Text="Título" Grid.Column="0" Grid.Row="1"/>
+            <Entry Text="{Binding PinData.LabelDescription}" Placeholder="Ej: Instituto Tecnológico de las Americas" Grid.ColumnSpan="2" Grid.Row="2" Keyboard="Text"/>
 
-            <Label Text="Direccion" Grid.Column="0" Grid.Row="3"/>
-            <Entry Text="{Binding PinData.Address}" Placeholder="Ej: Las Americas Km. 27" Grid.ColumnSpan="2" Grid.Row="4" Keyboard="Text"/>
+            <Label Text="Dirección" Grid.Column="0" Grid.Row="3"/>
+            <Entry Text="{Binding PinData.Address}" Placeholder="Ej: Las Américas Km. 27" Grid.ColumnSpan="2" Grid.Row="4" Keyboard="Text"/>
 
-            <Label Text="Descripcion" Grid.Column="0" Grid.Row="5"/>
-            <Entry Text="{Binding PinData.PlaceDescription}" Placeholder="Ej: El ITLA es el centro de educación superior en tecnología #1 en La Republica Dominicana"
+            <Label Text="Descripción" Grid.Column="0" Grid.Row="5"/>
+            <Entry Text="{Binding PinData.PlaceDescription}" Placeholder="Ej: El ITLA es el centro de educación superior en tecnología #1 en La República Dominicana"
                        VerticalTextAlignment="Start" Keyboard="Text" Grid.ColumnSpan="2" Grid.Row="6"/>
 
             <Button ImageSource="camera_alt_2_svgrepo_com.png" WidthRequest="180" Text="Agregar Foto" 
@@ -26,8 +26,9 @@
                         Grid.Column="0" Grid.Row="7"/>
             <Button Grid.Column="1" Grid.Row="7" Text="Guardar Cambios" ImageSource="save_svgrepo_com.jpg" WidthRequest="180" Margin="10, 15"
                     Command="{Binding SavePinCommand}"/>
+            <Button Grid.Row="8" Grid.ColumnSpan="2" ImageSource="delete.jpg" Text="Eliminar Marca" Command="{Binding DeletePinAsyncCommand}"/>
 
-            <Image Source="{Binding PinData.ImageFullPath}" Grid.ColumnSpan="2" Grid.Row="8"/>
+            <Image Source="{Binding PinData.ImageFullPath}" Grid.ColumnSpan="2" Grid.Row="9" Margin="20"/>
 
         </Grid>
     </ScrollView>

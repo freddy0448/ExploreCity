@@ -9,11 +9,11 @@
         <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
         
         <Label Text="Usuario"/>
-        <Entry Placeholder="Usuario" Text="{Binding User.UserName}" ClearButtonVisibility="WhileEditing"/>
+        <Entry Placeholder="Usuario" Text="{Binding User.UserName}" ClearButtonVisibility="WhileEditing" x:Name="UserEntry"/>
         
         <Label Text="Contraseña"/>
-        <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding User.Password}" ClearButtonVisibility="WhileEditing"/>
-        
+        <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding User.Password}" ClearButtonVisibility="WhileEditing" x:Name="PasswordEntry"/>
+
         <Button Text="Iniciar Sesión" VerticalOptions="Center" Command="{Binding LogInCommand}"/>
         <!--<WebView x:Name="WebViewInstance"/>-->
     </VerticalStackLayout>

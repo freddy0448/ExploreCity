@@ -80,5 +80,11 @@ namespace ExploreCity.ViewModels
 
             return result;
         }
+
+        [RelayCommand]
+        public async void LogOut()
+        {
+            await Shell.Current.GoToAsync("../..");
+        }
     }
 }

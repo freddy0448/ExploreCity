@@ -23,6 +23,7 @@
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
-            </StackLayout>
+            <Button Text="Cerrar Sesión" Command="{Binding LogOutCommand}"/>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

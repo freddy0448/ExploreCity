@@ -28,13 +28,14 @@ namespace ExploreCity.ViewModels
                 if (photo != null)
                 {
                     photo.FileName = DateTime.Now.ToString("dd-MM-yyyy H:mm ss") + ".jpg";
-                    PinData.ImageFullPath = Path.Combine(FileSystem.Current.CacheDirectory, photo.FileName);
+                    PinData.ImageFullPath = Path.Combine(FileSystem.Current.AppDataDirectory, photo.FileName);
 
-                    string localFilePath = Path.Combine(FileSystem.Current.CacheDirectory, photo.FileName);
+                    string localFilePath = Path.Combine(FileSystem.Current.AppDataDirectory, photo.FileName);
                     using Stream source = await photo.OpenReadAsync();
                     using FileStream fileStream = File.OpenWrite(localFilePath);
 
                     await source.CopyToAsync(fileStream);
+                    await pinService.UpdatePinAsync(PinData);
                 }
             }
         }
@@ -46,6 +47,21 @@ namespace ExploreCity.ViewModels
             PinData.PlaceDescription = result.PlaceDescription;
 
             await pinService.UpdatePinAsync(PinData);
+            await Shell.Current.GoToAsync("..");
+        }
+
+        [RelayCommand]
+        public async void DeletePinAsync()
+        {
+            var result = await pinService.DeletePinAsync(PinData);
+            if (result > 0)
+            {
+                await Shell.Current.DisplayAlert("Mensaje", "Marca eliminada", "OK");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Mensaje", "La marca no fue eliminada", "OK"); 
+            }
             await Shell.Current.GoToAsync("..");
         }
     }
