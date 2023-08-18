@@ -21,24 +21,28 @@ public partial class UsagePage : ContentPage
 
     public async void OnMapClicked(object sender, MapClickedEventArgs e)
     {
-        int response = await _viewModel.SavePin();
-        if (response == 0) return;
+        bool savePin = await Shell.Current.DisplayAlert("Mensaje", "Desea guardar la nueva marca?", "SI", "NO");
 
-        tappedLocation = new Microsoft.Maui.Devices.Sensors.Location(e.Location);
-
-        var pin = await Geocoding.GetPlacemarksAsync(UsagePage.tappedLocation);
-        string addressToInsert = pin.ElementAt(2).Thoroughfare + ", " + pin.ElementAt(2).Locality + ", " + pin.ElementAt(2).AdminArea + ", " + pin.ElementAt(2).CountryName;
-
-        _viewModel.Locations.Add(new Models.PinModel()
+        if (savePin)
         {
-            Address = addressToInsert,
-            Latitude = UsagePage.tappedLocation.Latitude,
-            Longitude = UsagePage.tappedLocation.Longitude,
-            Coordinates = UsagePage.tappedLocation,
-            LabelDescription = "Nueva ubicacion",
-            Id = UsagePage.tappedLocation.Latitude.ToString() + " , " + UsagePage.tappedLocation.Longitude.ToString(),
-        });
+            tappedLocation = new Microsoft.Maui.Devices.Sensors.Location(e.Location);
 
+            var pin = await Geocoding.GetPlacemarksAsync(UsagePage.tappedLocation);
+            string addressToInsert = pin.ElementAt(2).Thoroughfare + ", " + pin.ElementAt(2).Locality + ", " + pin.ElementAt(2).AdminArea + ", " + pin.ElementAt(2).CountryName;
+
+            _viewModel.Locations.Add(new Models.PinModel()
+            {
+                Address = addressToInsert,
+                Latitude = UsagePage.tappedLocation.Latitude,
+                Longitude = UsagePage.tappedLocation.Longitude,
+                Coordinates = UsagePage.tappedLocation,
+                LabelDescription = "Nueva ubicación",
+                Id = UsagePage.tappedLocation.Latitude.ToString() + " , " + UsagePage.tappedLocation.Longitude.ToString(),
+            });
+
+            await _viewModel.SavePin();
+        }
+        else return;
     }
 
     protected override void OnAppearing()

@@ -67,11 +67,16 @@ namespace ExploreCity.ViewModels
         {
             string imagePath = PinData.ImageFullPath;
 
-            await Share.Default.RequestAsync(new ShareFileRequest
+            if (imagePath == null) 
+                await Shell.Current.DisplayAlert("Mensaje", "No es posible compartir la imagén, ya que no existe", "OK");
+            else
             {
-                Title = "Compartir imagén del marcador",
-                File = new ShareFile(imagePath)
-            });
+                await Share.Default.RequestAsync(new ShareFileRequest
+                {
+                    Title = "Compartir imagén del marcador",
+                    File = new ShareFile(imagePath)
+                });
+            }
         }
     }
 }

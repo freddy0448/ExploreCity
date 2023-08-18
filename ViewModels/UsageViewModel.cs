@@ -36,26 +36,15 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async Task<int> SavePin()
         {
-            int response = 0;
-
-            bool savePin = await Shell.Current.DisplayAlert("Mensaje", "Desea guardar la nueva marca?", "SI", "NO");
-
-            if (savePin)
+            int insertResponse = 0;
+            var deleteResponse = await _pinService.DeleteAllPinsAsync();
+            foreach (var location in Locations)
             {
-
-                foreach (var location in Locations)
-                {
-                    var responseInsert = _pinService.InsertPinAsync(location);
-                    response = await responseInsert;
-                }
+                var responseInsert = _pinService.InsertPinAsync(location);
+                insertResponse = await responseInsert;
             }
-            else if (!savePin)
-            {
-                Locations.Last().Coordinates = null;
-                await _pinService.DeletePinAsync(Locations.Last());
-            }
-
-            return response;
+            Locations.Last().Coordinates = null;
+            return insertResponse;
         }
 
         [RelayCommand]
