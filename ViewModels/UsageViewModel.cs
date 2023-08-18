@@ -42,7 +42,6 @@ namespace ExploreCity.ViewModels
 
             if (savePin)
             {
-                //await _pinService.DeleteAllPinsAsync();
 
                 foreach (var location in Locations)
                 {
