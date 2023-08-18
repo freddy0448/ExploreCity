@@ -24,12 +24,5 @@ namespace ExploreCity.ViewModels
         {
             await Shell.Current.GoToAsync(nameof(UsagePage));
         }
-
-        [RelayCommand]
-        public async void GoToDetails()
-        {
-            await Shell.Current.GoToAsync(nameof(DetailsPage));
-        }
-
     }
 }

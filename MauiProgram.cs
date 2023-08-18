@@ -1,5 +1,4 @@
-﻿using ExploreCity.Auth0;
-using ExploreCity.Services;
+﻿using ExploreCity.Services;
 using ExploreCity.ViewModels;
 using ExploreCity.Views;
 using Microsoft.Extensions.Logging;
@@ -43,13 +42,6 @@ namespace ExploreCity
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<IPinService, PinService>();
 
-            builder.Services.AddSingleton(new Auth0Client(new()
-            {
-                Domain = "freddy0448.us.auth0.com",
-                ClientId = "qHZARDum1odUK9z6sLEfsSJ3OgBAzIOL",
-                Scope = "openid profile",
-                RedirectUri = "myapp://callback"
-            }));
             return builder.Build();
         }
     }

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
 using ExploreCity.Services;
 using ExploreCity.Views;
+using Microsoft.Maui.ApplicationModel;
 using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
@@ -50,7 +51,11 @@ namespace ExploreCity.ViewModels
                 }
             }
             else if (!savePin)
+            {
                 Locations.Last().Coordinates = null;
+                await _pinService.DeletePinAsync(Locations.Last());
+            }
+
             return response;
         }
 
@@ -86,5 +91,6 @@ namespace ExploreCity.ViewModels
         {
             await Shell.Current.GoToAsync("../..");
         }
+
     }
 }

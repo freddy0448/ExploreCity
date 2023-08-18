@@ -8,7 +8,7 @@ namespace ExploreCity.Services
         Task<int> InsertPinAsync(PinModel pinModel);
         Task<int> DeleteAllPinsAsync();
         Task<int> UpdatePinAsync(PinModel pinModel);
-        Task<PinModel> GetSpecifiedPin(double longitud);
+        Task<PinModel> GetSpecifiedPin(string id);
         Task<int> DeletePinAsync(PinModel pinModel);
     }
 }

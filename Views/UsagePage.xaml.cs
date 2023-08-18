@@ -21,6 +21,9 @@ public partial class UsagePage : ContentPage
 
     public async void OnMapClicked(object sender, MapClickedEventArgs e)
     {
+        int response = await _viewModel.SavePin();
+        if (response == 0) return;
+
         tappedLocation = new Microsoft.Maui.Devices.Sensors.Location(e.Location);
 
         var pin = await Geocoding.GetPlacemarksAsync(UsagePage.tappedLocation);
@@ -32,10 +35,10 @@ public partial class UsagePage : ContentPage
             Latitude = UsagePage.tappedLocation.Latitude,
             Longitude = UsagePage.tappedLocation.Longitude,
             Coordinates = UsagePage.tappedLocation,
-            LabelDescription = "Nueva ubicacion"
+            LabelDescription = "Nueva ubicacion",
+            Id = UsagePage.tappedLocation.Latitude.ToString() + " , " + UsagePage.tappedLocation.Longitude.ToString(),
         });
 
-        await _viewModel.SavePin();
     }
 
     protected override void OnAppearing()
@@ -46,7 +49,8 @@ public partial class UsagePage : ContentPage
     private void Pin_InfoWindowClicked(object sender, PinClickedEventArgs e)
     {
         var pin = (Pin)sender;
-        var desc = pinService.GetSpecifiedPin(pin.Location.Longitude);
+        string pinId = pin.Location.Latitude.ToString() + " , " + pin.Location.Longitude.ToString();
+        var desc = pinService.GetSpecifiedPin(pinId);
 
         PinModel pinModel = new PinModel()
         {
@@ -56,7 +60,8 @@ public partial class UsagePage : ContentPage
             Longitude = pin.Location.Longitude,
             Coordinates = pin.Location,
             PlaceDescription = desc.Result.PlaceDescription,
-            ImageFullPath = desc.Result.ImageFullPath
+            ImageFullPath = desc.Result.ImageFullPath,
+            Id = pinId
         };
 
         var varParam = new Dictionary<string, object>();

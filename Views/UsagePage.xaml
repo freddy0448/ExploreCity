@@ -7,7 +7,9 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="ExploreCity.Views.UsagePage"
              Title="Inicio">
-    
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
     <VerticalStackLayout>
             <StackLayout>
                 <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>

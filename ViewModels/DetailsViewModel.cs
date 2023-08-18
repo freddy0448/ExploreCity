@@ -43,9 +43,6 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async Task SavePinAsync()
         {
-            PinModel result = await pinService.GetSpecifiedPin(PinData.Longitude);
-            PinData.PlaceDescription = result.PlaceDescription;
-
             await pinService.UpdatePinAsync(PinData);
             await Shell.Current.GoToAsync("..");
         }
@@ -63,6 +60,18 @@ namespace ExploreCity.ViewModels
                 await Shell.Current.DisplayAlert("Mensaje", "La marca no fue eliminada", "OK"); 
             }
             await Shell.Current.GoToAsync("..");
+        }
+
+        [RelayCommand]
+        public async Task ShareImage()
+        {
+            string imagePath = PinData.ImageFullPath;
+
+            await Share.Default.RequestAsync(new ShareFileRequest
+            {
+                Title = "Compartir imagén del marcador",
+                File = new ShareFile(imagePath)
+            });
         }
     }
 }
