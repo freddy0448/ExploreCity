@@ -12,7 +12,7 @@
             <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10" Grid.Row="0" Grid.ColumnSpan="2"/>
 
             <Label Text="Título" Grid.Column="0" Grid.Row="1"/>
-            <Entry Text="{Binding PinData.LabelDescription}" Placeholder="Ej: Bahía de las Águilas." Grid.ColumnSpan="2" Grid.Row="2" Keyboard="Text"/>
+            <Entry Text="{Binding PinData.LabelDescription}" Placeholder="Ej: Bahía de las Águilas." Grid.ColumnSpan="2" Grid.Row="2" Keyboard="Text" />
 
             <Label Text="Dirección" Grid.Column="0" Grid.Row="3"/>
             <Entry Text="{Binding PinData.Address}" Placeholder="Ej: Pedernales." Grid.ColumnSpan="2" Grid.Row="4" Keyboard="Text"/>
@@ -31,7 +31,7 @@
             <Image Source="{Binding PinData.ImageFullPath}" Grid.ColumnSpan="2" Grid.Row="9" Margin="20"/>
             <Button Grid.Column="1" Grid.Row="9" ImageSource="share.jpg" WidthRequest="50" HeightRequest="50" 
                     HorizontalOptions="End" VerticalOptions="End" SemanticProperties.Description="Compartir Imagén" Margin="20"
-                    CornerRadius="30" Command="{Binding ShareImageCommand}"/>
+                    CornerRadius="30" Command="{Binding ShareImageCommand}" IsVisible="{Binding IsShareVisible}"/>
 
         </Grid>
     </ScrollView>

@@ -36,11 +36,9 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
+		<MauiIcon Include="Resources\AppIcon\travel_icon.svg" Color="#FFFFFF" />
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
+		<MauiSplashScreen Include="Resources\Splash\travel_splash.svg" BaseSize="128,128" Color="#1F2E35" />
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
@@ -53,11 +51,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\travel_icon.svg" />
 	  <None Remove="Resources\Images\camera_alt_2_svgrepo_com.svg" />
 	  <None Remove="Resources\Images\delete.svg" />
+	  <None Remove="Resources\Images\list_black.svg" />
+	  <None Remove="Resources\Images\list_darksalmon.svg" />
 	  <None Remove="Resources\Images\save_svgrepo_com.svg" />
 	  <None Remove="Resources\Images\share.svg" />
 	  <None Remove="Resources\Images\travel_svgrepo_com.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\travel_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,6 +78,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\DetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LogInPage.xaml">

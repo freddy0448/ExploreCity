@@ -2,8 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
 using ExploreCity.Services;
-using ExploreCity.Views;
-using Microsoft.Maui.ApplicationModel;
 using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels

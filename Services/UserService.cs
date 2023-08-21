@@ -7,12 +7,12 @@ namespace ExploreCity.Services
     {
         static SQLiteAsyncConnection db;
 
-        async void Init()
+        async Task Init()
         {
             if (db != null)
                 return;
 
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExploreCityUsers.db");
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExploreCityUsers2.db");
             db = new SQLiteAsyncConnection(databasePath);
 
             await db.CreateTableAsync<UserModel>();
@@ -20,7 +20,7 @@ namespace ExploreCity.Services
 
         public async Task<List<UserModel>> GetUser()
         {
-            Init();
+            await Init();
             var response = await db.Table<UserModel>().ToListAsync();
 
             return response;
@@ -28,7 +28,7 @@ namespace ExploreCity.Services
 
         public async Task<int> InsertUser(UserModel userModel)
         {
-            Init();
+            await Init();
 
             var response = await db.InsertAsync(userModel);
             return response;

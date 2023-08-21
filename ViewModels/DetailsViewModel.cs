@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
 using ExploreCity.Services;
-using Microsoft.Maui.Controls.Maps;
 
 namespace ExploreCity.ViewModels
 {
@@ -11,6 +10,9 @@ namespace ExploreCity.ViewModels
     {
         [ObservableProperty]
         public PinModel pinData;
+
+        [ObservableProperty]
+        public bool isShareVisible;
 
         private IPinService pinService;
         public DetailsViewModel(IPinService _pinService)
@@ -44,7 +46,11 @@ namespace ExploreCity.ViewModels
         public async Task SavePinAsync()
         {
             await pinService.UpdatePinAsync(PinData);
-            await Shell.Current.GoToAsync("..");
+
+            if (string.IsNullOrEmpty(PinData.LabelDescription))
+                await Shell.Current.DisplayAlert("Mensaje", "El campo ' Título ' no puede estar vacio", "OK");
+            else
+                await Shell.Current.GoToAsync("..");
         }
 
         [RelayCommand]
@@ -57,7 +63,7 @@ namespace ExploreCity.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Mensaje", "La marca no fue eliminada", "OK"); 
+                await Shell.Current.DisplayAlert("Mensaje", "La marca no fue eliminada", "OK");
             }
             await Shell.Current.GoToAsync("..");
         }
@@ -67,16 +73,12 @@ namespace ExploreCity.ViewModels
         {
             string imagePath = PinData.ImageFullPath;
 
-            if (imagePath == null) 
-                await Shell.Current.DisplayAlert("Mensaje", "No es posible compartir la imagén, ya que no existe", "OK");
-            else
+            await Share.Default.RequestAsync(new ShareFileRequest
             {
-                await Share.Default.RequestAsync(new ShareFileRequest
-                {
-                    Title = "Compartir imagén del marcador",
-                    File = new ShareFile(imagePath)
-                });
-            }
+                Title = "Compartir imagén del marcador",
+                File = new ShareFile(imagePath)
+            });
+
         }
     }
 }

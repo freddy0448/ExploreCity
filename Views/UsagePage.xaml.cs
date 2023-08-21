@@ -41,6 +41,9 @@ public partial class UsagePage : ContentPage
             });
 
             await _viewModel.SavePin();
+            var varParam = new Dictionary<string, object>();
+            varParam.Add("PinData", _viewModel.Locations.Last());
+            await Shell.Current.GoToAsync(nameof(DetailsPage),varParam );
         }
         else return;
     }
