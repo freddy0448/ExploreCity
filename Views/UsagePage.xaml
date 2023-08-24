@@ -7,14 +7,17 @@
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              x:Class="ExploreCity.Views.UsagePage"
              Title="Inicio">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="logout.png" Command="{Binding LogOutCommand}"/>
+    </ContentPage.ToolbarItems>
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+        <BackButtonBehavior IsEnabled="False" IsVisible="False"  />
     </Shell.BackButtonBehavior>
+    
     <VerticalStackLayout>
             <StackLayout>
             <HorizontalStackLayout>
                 <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="135, 0, 0, 0" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button ImageSource="list_darksalmon.png" WidthRequest="50" HeightRequest="50" HorizontalOptions="End" VerticalOptions="End" Margin="70, 0, 0, 0"/>
             </HorizontalStackLayout>
             <maps:Map x:Name="map" HeightRequest="500" Margin="20" IsShowingUser="True" 
                           MapType="Street" MapClicked="OnMapClicked" ItemsSource="{Binding Locations}">
@@ -28,7 +31,7 @@
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
-            <Button Text="Cerrar Sesión" Command="{Binding LogOutCommand}"/>
+            <Button Text="Lista de Marcas" Command="{Binding GoToListCommand}"/>
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

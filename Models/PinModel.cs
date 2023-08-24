@@ -28,6 +28,8 @@ namespace ExploreCity.Models
                 Latitude = Latitude, 
                 Longitude = Longitude,
             };
+
+            ImageFullPath = "bahia.jpg";
         }
     }
 }

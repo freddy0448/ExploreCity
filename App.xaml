@@ -15,6 +15,8 @@
                 <Setter Property="BackgroundColor" Value="DarkCyan" />
                 <Setter Property="FontSize" Value="17"/>
                 <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BorderColor" Value="Silver"/>
+                <Setter Property="BorderWidth" Value="2" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="DarkSalmon" />
@@ -23,6 +25,13 @@
             <Style TargetType="Entry">
                 <Setter Property="TextColor" Value="Silver" />
                 <Setter Property="PlaceholderColor" Value="SlateGray"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="Background" Value="DarkCyan"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="Color" Value="DarkSalmon"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

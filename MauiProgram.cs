@@ -39,6 +39,9 @@ namespace ExploreCity
             builder.Services.AddTransient<DetailsViewModel>();
             builder.Services.AddTransient<DetailsPage>();
 
+            builder.Services.AddTransient<ListPage>();
+            builder.Services.AddTransient<ListViewModel>();
+
             builder.Services.AddSingleton<IUserService, UserService>();
             builder.Services.AddSingleton<IPinService, PinService>();
 

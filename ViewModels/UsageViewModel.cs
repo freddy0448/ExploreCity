@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using ExploreCity.Models;
 using ExploreCity.Services;
+using ExploreCity.Views;
 using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
@@ -76,6 +77,12 @@ namespace ExploreCity.ViewModels
         public async void LogOut()
         {
             await Shell.Current.GoToAsync("../..");
+        }
+
+        [RelayCommand]
+        public async void GoToList()
+        {
+            await Shell.Current.GoToAsync(nameof(ListPage));
         }
 
     }

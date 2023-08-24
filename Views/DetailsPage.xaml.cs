@@ -16,6 +16,5 @@ public partial class DetailsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        viewModel.IsShareVisible = (viewModel.PinData.ImageFullPath == null) ? false : true;
     }
 }
