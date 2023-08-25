@@ -12,7 +12,7 @@ namespace ExploreCity.Services
             if (db != null)
                 return;
 
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExploreCityUsers2.db");
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExploreCityUsers.db");
             db = new SQLiteAsyncConnection(databasePath);
 
             await db.CreateTableAsync<UserModel>();

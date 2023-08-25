@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ExploreCity.Core;
 using ExploreCity.Models;
 using ExploreCity.Services;
 
@@ -14,6 +15,8 @@ namespace ExploreCity.ViewModels
         [ObservableProperty]
         public bool isShareVisible;
 
+        FileResult photo;
+
         private IPinService pinService;
         public DetailsViewModel(IPinService _pinService)
         {
@@ -22,24 +25,14 @@ namespace ExploreCity.ViewModels
         }
 
         [RelayCommand]
-        public async Task OnCameraClicked()
+        public async Task CameraActions()
         {
-            if (MediaPicker.Default.IsCaptureSupported)
-            {
-                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
-                if (photo != null)
-                {
-                    photo.FileName = DateTime.Now.ToString("dd-MM-yyyy H:mm ss") + ".jpg";
-                    PinData.ImageFullPath = Path.Combine(FileSystem.Current.AppDataDirectory, photo.FileName);
+            photo = await GraphicsHandler.TakePicture(photo);
+            photo = await GraphicsHandler.SavePicture(photo);
 
-                    string localFilePath = Path.Combine(FileSystem.Current.AppDataDirectory, photo.FileName);
-                    using Stream source = await photo.OpenReadAsync();
-                    using FileStream fileStream = File.OpenWrite(localFilePath);
+            PinData.ImageFullPath = Path.Combine(FileSystem.Current.AppDataDirectory, photo.FileName);
 
-                    await source.CopyToAsync(fileStream);
-                    await pinService.UpdatePinAsync(PinData);
-                }
-            }
+            await pinService.UpdatePinAsync(PinData);            
         }
 
         [RelayCommand]
@@ -59,16 +52,21 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async void DeletePinAsync()
         {
-            var result = await pinService.DeletePinAsync(PinData);
-            if (result > 0)
+            bool firstResult = await Shell.Current.DisplayAlert("Mensaje",  "Está seguro que desea eliminar la marca?", "SI", "NO");
+            if (firstResult)
             {
-                await Shell.Current.DisplayAlert("Mensaje", "Marca eliminada", "OK");
+                var result = await pinService.DeletePinAsync(PinData);
+                if (result > 0)
+                {
+                    await Shell.Current.DisplayAlert("Mensaje", "Marca eliminada", "OK");
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Mensaje", "La marca no fue eliminada", "OK");
+                }
             }
-            else
-            {
-                await Shell.Current.DisplayAlert("Mensaje", "La marca no fue eliminada", "OK");
-            }
-            await Shell.Current.GoToAsync("..");
+            else return;
         }
 
         [RelayCommand]

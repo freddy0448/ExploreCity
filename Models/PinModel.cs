@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace ExploreCity.Models
 {
-    public partial class PinModel : ObservableObject
+    public partial class PinModel : ObservableObject //razones de cambio: 1-necesidad de registro de metadata de auditoria
     {
         public string Address { get; set; }
         public string LabelDescription { get; set; }

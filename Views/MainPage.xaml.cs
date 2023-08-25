@@ -10,10 +10,5 @@ namespace ExploreCity
             InitializeComponent();
             BindingContext = mainViewModel;
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Shell.Current.GoToAsync(nameof(DetailsPage));
-        }
     }
 }

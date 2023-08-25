@@ -7,7 +7,8 @@ using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
 {
-    public partial class UsageViewModel : ObservableObject
+    public partial class UsageViewModel : ObservableObject //Tiene la responsabilidad de lidear con todas las funcionalidades basicas del mapa
+                                                            //Razones de cambio : 1-cambio en el modelo. 
     {
         [ObservableProperty]
         Location _coordinates;
@@ -76,13 +77,13 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async void LogOut()
         {
-            await Shell.Current.GoToAsync("../..");
+            await Core.Core.LogOutAsync();
         }
 
         [RelayCommand]
         public async void GoToList()
         {
-            await Shell.Current.GoToAsync(nameof(ListPage));
+            await Core.Core.GoToPageAsync(nameof(ListPage));
         }
 
     }

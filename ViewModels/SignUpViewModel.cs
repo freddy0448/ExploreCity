@@ -6,7 +6,7 @@ using ExploreCity.Views;
 
 namespace ExploreCity.ViewModels
 {
-    public partial class SignUpViewModel : ObservableObject
+    public partial class SignUpViewModel : ObservableObject //razones de cambio: 1-cambio en la autenticacion del sistema
     {
         IUserService _userService;
 
@@ -60,7 +60,7 @@ namespace ExploreCity.ViewModels
             {
                 await _userService.InsertUser(User);
                 await Shell.Current.DisplayAlert("Mensaje", "Usuario registrado exitosamente", "OK");
-                await Shell.Current.GoToAsync(nameof(UsagePage));
+                await Core.Core.GoToPageAsync(nameof(UsagePage));
             }
             else
             {

@@ -6,9 +6,9 @@ using ExploreCity.Views;
 
 namespace ExploreCity.ViewModels
 {
-    public partial class LogInViewModel : ObservableObject
+    public partial class LogInViewModel : ObservableObject      //manejar funcionalidades basicas del login
+                                                                //razones de cambio: 1-cambio en la autenticacion del sistema
     {
-        //private readonly Auth0Client _client;
         private IUserService _userService;
 
         List<string> cUserName;
@@ -19,7 +19,7 @@ namespace ExploreCity.ViewModels
 
         [ObservableProperty]
         string password;
-        public LogInViewModel(/*Auth0Client auth0Client, */IUserService userService)
+        public LogInViewModel(IUserService userService)
         {
             _userService = userService;
             user = new UserModel();
@@ -57,7 +57,7 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         void GoToUsagePage()
         {
-            Shell.Current.GoToAsync(nameof(UsagePage));
+            Core.Core.GoToPage(nameof(UsagePage));
         }
 
         private void CleanEntries()

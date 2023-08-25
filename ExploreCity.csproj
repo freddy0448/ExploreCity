@@ -55,7 +55,6 @@
 	  <None Remove="Resources\Images\bahia.jpg" />
 	  <None Remove="Resources\Images\camera_alt_2_svgrepo_com.svg" />
 	  <None Remove="Resources\Images\delete.svg" />
-	  <None Remove="Resources\Images\list_black.svg" />
 	  <None Remove="Resources\Images\list_darksalmon.svg" />
 	  <None Remove="Resources\Images\logout.svg" />
 	  <None Remove="Resources\Images\save_svgrepo_com.svg" />

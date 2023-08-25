@@ -12,7 +12,7 @@ namespace ExploreCity.Services
             if (db != null)
                 return;
 
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExploreCityPins2.db");
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ExploreCityPins.db");
             db = new SQLiteAsyncConnection(databasePath);
 
             await db.CreateTableAsync<PinModel>();

@@ -10,19 +10,13 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async void GoToLogIn()
         {
-            await Shell.Current.GoToAsync(nameof(LogInPage));
+            await Core.Core.GoToPageAsync(nameof(LogInPage));
         }
 
         [RelayCommand]
         public async void GoToSignUp()
         {
-            await Shell.Current.GoToAsync(nameof(SignUpPage));
-        }
-
-        [RelayCommand]
-        public async void GoToUsage()
-        {
-            await Shell.Current.GoToAsync(nameof(UsagePage));
+            await Core.Core.GoToPageAsync(nameof(SignUpPage));
         }
     }
 }

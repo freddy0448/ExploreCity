@@ -1,3 +1,4 @@
+using ExploreCity.Core;
 using ExploreCity.Models;
 using ExploreCity.Services;
 using ExploreCity.ViewModels;
@@ -5,7 +6,7 @@ using Microsoft.Maui.Controls.Maps;
 
 namespace ExploreCity.Views;
 
-public partial class UsagePage : ContentPage
+public partial class UsagePage : ContentPage    //razones de cambio: 1-cambio en el modelo. 2-cambio en el api del mapa
 {
     public static Microsoft.Maui.Devices.Sensors.Location tappedLocation;
     private UsageViewModel _viewModel;
@@ -41,9 +42,8 @@ public partial class UsagePage : ContentPage
             });
 
             await _viewModel.SavePin();
-            var varParam = new Dictionary<string, object>();
-            varParam.Add("PinData", _viewModel.Locations.Last());
-            await Shell.Current.GoToAsync(nameof(DetailsPage),varParam );
+
+            await Core.Core.GoToDetailsWithDataAsync(_viewModel.Locations.Last());
         }
         else return;
     }
@@ -71,8 +71,11 @@ public partial class UsagePage : ContentPage
             Id = pinId
         };
 
-        var varParam = new Dictionary<string, object>();
-        varParam.Add("PinData", pinModel);
-        Shell.Current.GoToAsync(nameof(DetailsPage), varParam);
+        Core.Core.GoToDetailsWithData(pinModel);
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
     }
 }

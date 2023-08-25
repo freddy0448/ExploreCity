@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ExploreCity.Core;
 using ExploreCity.Models;
 using ExploreCity.Services;
 using ExploreCity.Views;
@@ -7,7 +8,8 @@ using System.Collections.ObjectModel;
 
 namespace ExploreCity.ViewModels
 {
-    public partial class ListViewModel : ObservableObject   
+    public partial class ListViewModel : ObservableObject    //Lidea con las acciones necesarias para mostrar y manejar la lista de marcadores
+                                                            //razones de cambio: 1-cambios en los campos tomados en cuenta para la busqueda
     {
         IPinService pinService;
 
@@ -46,16 +48,14 @@ namespace ExploreCity.ViewModels
         [RelayCommand]
         public async void OnFrameClicked(PinModel pin)
         {
-            var pinParam = new Dictionary<string, object>();
-            pinParam.Add("PinData", pin);
-            await Shell.Current.GoToAsync(nameof(DetailsPage), pinParam);
+            await Core.Core.GoToDetailsWithDataAsync(pin);
             SearchText = string.Empty;
         }
 
         [RelayCommand]
         public async void LogOut()
         {
-            await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            await Core.Core.LogOutAsync();
         }
 
         public ObservableCollection<PinModel> Search(string searchText)
@@ -63,9 +63,9 @@ namespace ExploreCity.ViewModels
             SearchResults.Clear();
             foreach (var pin in Pins)
             {
-                bool test = pin.LabelDescription.ToLower().Contains(searchText.ToLower());
+                bool doesThePinExists = pin.LabelDescription.ToLower().Contains(searchText.ToLower());
 
-                if (test)
+                if (doesThePinExists)
                 {
                     SearchResults.Add(pin);
                 }

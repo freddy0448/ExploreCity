@@ -4,17 +4,15 @@ using ExploreCity.ViewModels;
 
 namespace ExploreCity.Views;
 
-public partial class ListPage : ContentPage
+public partial class ListPage : ContentPage     //razones de cambio: 1-
 {
 	ListViewModel viewModel;
-    IPinService pinService;
-	public ListPage(ListViewModel listViewModel, IPinService pinService)
+	public ListPage(ListViewModel listViewModel)
 	{
 		InitializeComponent();
 		BindingContext = listViewModel;
 		viewModel = listViewModel;
         viewModel.SelectedPin = new PinModel();
-        this.pinService = pinService;
     }
 
     protected override void OnAppearing()
