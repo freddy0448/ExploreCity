@@ -21,6 +21,20 @@
             </HorizontalStackLayout>
             <maps:Map x:Name="map" HeightRequest="500" Margin="20" IsShowingUser="True" 
                           MapType="Street" MapClicked="OnMapClicked" ItemsSource="{Binding Locations}">
+                <x:Arguments>
+                    <MapSpan>
+                        <x:Arguments>
+                            <sensors:Location>
+                                <x:Arguments>
+                                    <x:Double>19.0000000</x:Double>
+                                    <x:Double>-70.6667000</x:Double>
+                                </x:Arguments>
+                            </sensors:Location>
+                            <x:Double>8</x:Double>
+                            <x:Double>8</x:Double>
+                        </x:Arguments>
+                    </MapSpan>
+                </x:Arguments>
                 <maps:Map.ItemTemplate>
                     <DataTemplate >
                         <maps:Pin Location="{Binding Coordinates}"

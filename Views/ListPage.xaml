@@ -12,10 +12,12 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <Image Source="travel_svgrepo_com.png" WidthRequest="120" Margin="10"/>
+            <SearchBar HorizontalOptions="CenterAndExpand" Keyboard="Text" CancelButtonColor="DarkSalmon"
+                       Text="{Binding SearchText}" TextChanged="SearchBar_TextChanged" Placeholder="Busqueda por título"
+                       WidthRequest="350"/>
 
-            <CollectionView Margin="25" ItemsSource="{Binding Pins}" SelectionMode="Single" SelectedItem="{Binding SelectedPin}" 
-                            EmptyView="No existe ningún marcador">
+            <CollectionView Margin="25" SelectionMode="Single" SelectedItem="{Binding SelectedPin}" 
+                            EmptyView="No existe ningún marcador" x:Name="pinsListView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:PinModel" >
                         <Frame Margin="5" >

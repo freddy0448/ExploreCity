@@ -55,11 +55,19 @@ namespace ExploreCity.Services
             return  db.FindAsync<PinModel>(id);
         }
 
+        public async Task<PinModel> GetSpecifiedPinByDesc(string labelDescription)
+        {
+            await Init();
+            return await db.FindWithQueryAsync<PinModel>($"SELECT * FROM PinModel WHERE LabelDescription = '{labelDescription}'"); 
+        }
+
+
         public async Task<int> DeletePinAsync(PinModel pinModel)
         {
             await Init();
 
             return await db.DeleteAsync(pinModel);
         }
+
     }
 }

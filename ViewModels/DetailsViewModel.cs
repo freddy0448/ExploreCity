@@ -50,7 +50,10 @@ namespace ExploreCity.ViewModels
             if (string.IsNullOrEmpty(PinData.LabelDescription))
                 await Shell.Current.DisplayAlert("Mensaje", "El campo ' Título ' no puede estar vacio", "OK");
             else
+            {
+                await Shell.Current.DisplayAlert("Mensaje", "Cambios guardados exitosamente", "OK");
                 await Shell.Current.GoToAsync("..");
+            }
         }
 
         [RelayCommand]

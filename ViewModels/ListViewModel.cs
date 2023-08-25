@@ -17,9 +17,16 @@ namespace ExploreCity.ViewModels
         [ObservableProperty]
         PinModel _selectedPin;
 
+        [ObservableProperty]
+        string _searchText;
+
+        [ObservableProperty]
+        ObservableCollection<PinModel> _searchResults;
+
         public ListViewModel(IPinService _pinService)
         {
             _pins = new ObservableCollection<PinModel>();
+            _searchResults = new ObservableCollection<PinModel>();
             this.pinService = _pinService;
         }
 
@@ -42,6 +49,7 @@ namespace ExploreCity.ViewModels
             var pinParam = new Dictionary<string, object>();
             pinParam.Add("PinData", pin);
             await Shell.Current.GoToAsync(nameof(DetailsPage), pinParam);
+            SearchText = string.Empty;
         }
 
         [RelayCommand]
@@ -50,6 +58,19 @@ namespace ExploreCity.ViewModels
             await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
         }
 
+        public ObservableCollection<PinModel> Search(string searchText)
+        {
+            SearchResults.Clear();
+            foreach (var pin in Pins)
+            {
+                bool test = pin.LabelDescription.ToLower().Contains(searchText.ToLower());
 
+                if (test)
+                {
+                    SearchResults.Add(pin);
+                }
+            }
+            return SearchResults;
+        }
     }
 }
